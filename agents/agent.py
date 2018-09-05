@@ -115,7 +115,7 @@ class Critic:
         self.model = models.Model(inputs=[states, actions], outputs=Q_values)
 
         # Define optimizer and compile model for training with built-in loss function
-        optimizer = optimizers.Adam()
+        optimizer = optimizers.Adam() # lr=0.001
         self.model.compile(optimizer=optimizer, loss='mse')
 
         # Compute action gradients (derivative of Q values w.r.t. to actions)
@@ -149,7 +149,7 @@ class DDPG():
         self.critic_target.model.set_weights(self.critic_local.model.get_weights())
         self.actor_target.model.set_weights(self.actor_local.model.get_weights())
 
-        # Noise process
+#         # Noise process
 #         self.exploration_mu = 0
 #         self.exploration_theta = 0.30
 #         self.exploration_sigma = 0.4
